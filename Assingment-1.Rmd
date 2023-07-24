@@ -1,0 +1,121 @@
+---
+title: "Assingment-1"
+author: "KAMESHWARAN R"
+date: "2023-07-24"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+1.This exercise involves the Auto data set studied in the lab. Make sure that the missing values have been removed from the data.
+
+
+ (a) Which of the predictors are quantitative, and which are qualitative?
+
+```{r}
+library(ISLR)
+```
+
+```{r}
+auto=data.frame(Auto)
+auto
+```
+
+
+```{r}
+str(auto)
+
+```
+ Answer:Quantitative-mpg, displacement, horsepower, weight, accelaration, year 
+        Qualitative-cylinders, origin, name
+        
+        
+(b) What is the range of each quantitative predictor? You can answer this using the range() function.
+
+```{r}
+range(Auto[,1])
+for (i in c(1,3,4,5,7)){
+  print(range(Auto[,i]))
+}
+
+```
+
+(c) What is the mean and standard deviation of each quantitative predictor? 
+
+```{r}
+range(Auto[,1])
+for (i in c(1,3,4,5,7)){
+  print(mean(Auto[,i]))
+}
+```
+```{r}
+range(Auto[,1])
+for (i in c(1,3,4,5,7)){
+  print(sd(Auto[,i]))
+}
+```
+
+
+(d)	 Now remove the 10th through 85th observations. What is the range, mean, and standard deviation of each predictor in the subset of the data that remains? 
+
+```{r}
+auto=Auto[-(10:85),]
+auto
+
+```
+
+```{r}
+for(i in c(1,3,4,5,6,7)){
+ print( range(auto[,i]))
+}
+```
+
+```{r}
+for(i in c(1,3,4,5,6,7)){
+ print( mean(auto[,i]))
+}
+```
+
+```{r}
+for(i in c(1,3,4,5,6,7)){
+ print( sd(auto[,i]))
+}
+```
+
+
+
+
+(e)	Using the full data set, investigate the predictors graphically, using scatterplots or other tools of your choice. Create some plots highlighting the relationships among the predictors. Comment on your findings.
+
+
+```{r}
+pairs(auto)
+```
+```{r}
+plot(auto$acceleration,auto$weight)
+```
+
+
+There is a negative correlation that shows when weight increases accelaration decreases.
+
+```{r}
+plot(auto$horsepower, auto$mpg)
+```
+
+
+
+ There is a negative correlation that is when horsepower increases, mpg decreases.
+
+```{r}
+plot(auto$year, auto$mpg)
+```
+
+
+
+(f) Suppose that we wish to predict gas mileage (mpg) on the basis of the other variables. Do your plots suggest that any of the other variables might be useful in predicting mpg? Justify your answer
+
+Ans:Yes, it is clear from these graphs that some variables have positive links to the mpg outcome while others have negative ones. While year and mpg have a positive association with one another (when year grows, mpg also increases), mpg and horsepower have a negative relationship with one another (when horsepower increases, mpg declines).
+
